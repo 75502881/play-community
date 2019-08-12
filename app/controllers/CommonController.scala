@@ -18,6 +18,10 @@ import scala.concurrent.{ExecutionContext, Future}
 @Singleton
 class CommonController @Inject()(cc: ControllerComponents, mongo: Mongo, commonService: CommonService, eventService: EventService)(implicit ec: ExecutionContext, parser: BodyParsers.Default) extends AbstractController(cc) {
 
+  /**
+    *
+    * @return
+    */
   def doVote = (checkLogin andThen checkActive).async { implicit request: Request[AnyContent] =>
     Form(tuple("resId" -> nonEmptyText, "resType" -> nonEmptyText, "resTitle" -> nonEmptyText)).bindFromRequest().fold(
       errForm => Future.successful(Ok(Json.obj("status" -> 1, "msg" -> "invalid args."))),
