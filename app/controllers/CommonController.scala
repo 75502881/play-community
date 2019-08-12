@@ -19,7 +19,7 @@ import scala.concurrent.{ExecutionContext, Future}
 class CommonController @Inject()(cc: ControllerComponents, mongo: Mongo, commonService: CommonService, eventService: EventService)(implicit ec: ExecutionContext, parser: BodyParsers.Default) extends AbstractController(cc) {
 
   /**
-    * test
+    * test5
     * @return
     */
   def doVote = (checkLogin andThen checkActive).async { implicit request: Request[AnyContent] =>
