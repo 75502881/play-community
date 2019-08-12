@@ -26,6 +26,7 @@ class CommonController @Inject()(cc: ControllerComponents, mongo: Mongo, commonS
     Form(tuple("resId" -> nonEmptyText, "resType" -> nonEmptyText, "resTitle" -> nonEmptyText)).bindFromRequest().fold(
       errForm => Future.successful(Ok(Json.obj("status" -> 1, "msg" -> "invalid args."))),
       tuple => {
+        //test is right
         val (resId, resType, resTitle) = tuple
         val resCol = mongo.collection(AppUtil.getCollectionName(resType))
         for{
